@@ -1,24 +1,21 @@
 import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import reviewsFromJSON from "../../movie-data.json"
+import { getMovieReviews, setLocalStorageKey } from '../js/local-storage-handlers'
+import { makingReviewCards } from '../js/dom-helpers'
+import { handleMovieSubmit, resetMovies } from "../js/event-handlers"
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
 
-setupCounter(document.querySelector('#counter'))
+const main = () => {
+  const localReviews = getMovieReviews();
+  if (!localReviews || localReviews.length === 0) {
+    setLocalStorageKey("reviews", reviewsFromJSON);
+  }
+
+  makingReviewCards();
+
+  document.querySelector("#movie-form-header").addEventListener("submit", handleMovieSubmit);
+
+  resetMovies();
+}
+
+main();
