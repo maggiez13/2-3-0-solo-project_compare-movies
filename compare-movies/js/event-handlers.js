@@ -1,5 +1,6 @@
 import { makingReviewCards } from "./dom-helpers";
 import { getMovieReviews, setLocalStorageKey } from "./local-storage-handlers";
+import { renderBarChart, renderDoughnutChart, renderScatterPlot } from "./chart";
 
 export const handleMovieSubmit = (event) => {
   event.preventDefault();
@@ -17,6 +18,10 @@ export const handleMovieSubmit = (event) => {
   setLocalStorageKey("reviews", reviews);
   makingReviewCards();
   form.reset();
+
+  renderBarChart(reviews);
+  renderDoughnutChart(reviews);
+  renderScatterPlot(reviews);
 }
 
 export const resetMovies = () => {

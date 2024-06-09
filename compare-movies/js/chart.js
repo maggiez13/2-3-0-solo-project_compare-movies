@@ -2,6 +2,15 @@ import Chart from 'chart.js/auto';
 import { getMovieReviews } from './local-storage-handlers';
 
 export const renderBarChart = (data) => {
+  const canvas = document.getElementById('domestic-bar-chart');
+  if (canvas) {
+    // Check if a chart instance exists on the canvas
+    const existingChart = Chart.getChart(canvas);
+    if (existingChart) {
+      // If a chart instance exists, destroy it
+      existingChart.destroy();
+    }
+  }
   data.sort((a, b) => b.domestic - a.domestic);
 
   const movieTitles = data.map(movie => movie.title);
@@ -52,6 +61,13 @@ export const renderBarChart = (data) => {
 };
 
 export const renderDoughnutChart = (data) => {
+  const canvas = document.getElementById('genre-doughnut-chart');
+  if (canvas) {
+    const existingChart = Chart.getChart(canvas);
+    if (existingChart) {
+      existingChart.destroy();
+    }
+  }
   const genreGross = {};
   data.forEach(movie => {
     if (genreGross[movie.genre]) {
@@ -113,6 +129,13 @@ export const renderDoughnutChart = (data) => {
 };
 
 export const renderScatterPlot = (data) => {
+  const canvas = document.getElementById('critic-audience-score-chart');
+  if (canvas) {
+    const existingChart = Chart.getChart(canvas);
+    if (existingChart) {
+      existingChart.destroy();
+    }
+  }
   const criticScores = data.map(movie => parseInt(movie.criticScore));
   const audienceScores = data.map(movie => parseInt(movie.audienceScore));
   const domesticGross = data.map(movie => parseInt(movie.domestic));
