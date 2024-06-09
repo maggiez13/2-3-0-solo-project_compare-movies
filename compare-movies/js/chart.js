@@ -133,11 +133,6 @@ export const renderDoughnutChart = (data) => {
   );
 };
 
-
-
-
-
-
 export const renderScatterPlot = (data) => {
   const canvas = document.getElementById('critic-audience-score-chart');
   if (canvas) {
