@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Compare Movies</title>
+    <script type="module" crossorigin src="/2-3-0-solo-project_compare-movies/assets/index-BbaHwacK.js"></script>
+    <link rel="stylesheet" crossorigin href="/2-3-0-solo-project_compare-movies/assets/index-DFgkRZ48.css">
+  </head>
+  <body>
+    <main>
+      <h1 class="titles-css">2023's Top Domestic Movies</h1>
+      <h2 class="titles-css">Movies</h2>
+      <section id="form-plus-reviews-container" class="spacing">
+        <form id="movie-form-header" aria-labelledby="movie-form-heading">
+          <h2 id="movie-form-heading" class="spacing">Add Your Movie</h2>
+          <div class="spacing">
+            <label for="movie-title">Movie Title:</label>
+            <input type="text" id="movie-title" name="movieTitle" required>
+          </div>
+          <div class="spacing">
+            <label for="critic-score">Critic Score:</label>
+            <input type="number" id="critic-score" name="criticScore" required class="input-small">
+          </div>
+          <div class="spacing">
+            <label for="audience-score">Audience Score:</label>
+            <input type="number" id="audience-score" name="audienceScore" required class="input-small">
+          </div>          
+          <div class="spacing">
+            <label for="domestic-gross-sales">Domestic Gross Sales:</label>
+            <input type="number" id="domestic-gross-sales" name="domesticGrossSales" required>
+          </div>
+          <div class="spacing">
+            <label for="genre-input">Genre:</label>
+            <select name="genre" id="genre-input" required>
+              <option value="">Select A Genre</option>
+              <option value="action">Action</option>
+              <option value="adventure">Adventure</option>
+              <option value="comedy">Comedy</option>
+              <option value="drama">Drama</option>
+              <option value="horror">Horror</option>
+              <option value="concert">Concert</option>
+              <option value="documentary">Documentary</option>
+              <option value="musical">Musical</option>
+              <option value="romance">Romance</option>
+              <option value="sci-fi">Sci-Fi</option>
+              <option value="thriller">Thriller</option>
+            </select>
+          </div>
+          <button>Add Movie</button>
+        </form>
+        <div id="reviews-and-button-container">
+          <section id="reviews-container" aria-labelledby="reviews-list">
+            <ul id="reviews-list" tabindex="0"></ul>
+          </section>
+          <div>
+            <button id="reset">Go Back to Default Movies</button>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div id="charts">
+          <section id="bar-chart" aria-labelledby="domestic-gross-bar-chart">
+              <h3 class="titles-css">Domestic Box Office</h3>
+              <canvas id="domestic-bar-chart"></canvas>
+          </section>
+          <section id="doughnut-chart" aria-labelledby="genre-doughnut-charts" >
+              <h3 class="titles-css">Genres and Total Gross</h3>
+              <canvas id="genre-doughnut-chart"></canvas>
+          </section>
+          <section id="scatterplot" aria-labelledby="audience-vs-critic-score-scatter-chart">
+              <h3 class="titles-css">Critic vs Audience Score</h3>
+              <canvas id="critic-audience-score-chart"></canvas>
+          </section>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
