@@ -15,24 +15,24 @@
       <h2>Movies</h2>
       <section id="form-plus-reviews-container">
         <form id="movie-form-header" aria-labelledby="movie-form-heading">
-          <h2 id="movie-form-heading">Add Your Movie</h2>
-          <div>
+          <h2 id="movie-form-heading" class="spacing">Add Your Movie</h2>
+          <div class="spacing">
             <label for="movie-title">Movie Title:</label>
             <input type="text" id="movie-title" name="movieTitle" required>
           </div>
-          <div>
+          <div class="spacing">
             <label for="critic-score">Critic Score:</label>
-            <input type="number" id="critic-score" name="criticScore" required>
+            <input type="number" id="critic-score" name="criticScore" required class="input-small">
           </div>
-          <div>
+          <div class="spacing">
             <label for="audience-score">Audience Score:</label>
-            <input type="number" id="audience-score" name="audienceScore" required>
-          </div>
-          <div>
+            <input type="number" id="audience-score" name="audienceScore" required class="input-small">
+          </div>          
+          <div class="spacing">
             <label for="domestic-gross-sales">Domestic Gross Sales:</label>
             <input type="number" id="domestic-gross-sales" name="domesticGrossSales" required>
           </div>
-          <div>
+          <div class="spacing">
             <label for="genre-input">Genre:</label>
             <select name="genre" id="genre-input" required>
               <option value="">Select A Genre</option>
@@ -51,27 +51,29 @@
           </div>
           <button>Add Movie</button>
         </form>
-        <section id="reviews-container" aria-labelledby="reviews-list">
-          <ul id="reviews-list" tabindex="0"></ul>
-          <button id="reset">Go Back to Default Movies</button>
-        </section>
+        <div id="reviews-and-button-container">
+          <section id="reviews-container" aria-labelledby="reviews-list">
+            <ul id="reviews-list" tabindex="0"></ul>
+          </section>
+          <div>
+            <button id="reset">Go Back to Default Movies</button>
+          </div>
+        </div>
       </section>
       <section>
         <div id="charts">
-          <section aria-label="domestic-gross-bar-chart">
-              <h2>Domestic Box Office</h2>
+          <section id="bar-chart" aria-labelledby="domestic-gross-bar-chart">
+              <h3>Domestic Box Office</h3>
               <canvas id="domestic-bar-chart"></canvas>
           </section>
-          <section aria-label="genre-doughnut-charts">
-              <h2>Genres and Total Gross</h2>
+          <section id="doughnut-chart" aria-labelledby="genre-doughnut-charts" >
+              <h3>Genres and Total Gross</h3>
               <canvas id="genre-doughnut-chart"></canvas>
           </section>
-          <section aria-label="audience-vs-critic-score-scatter-chart">
-              <h2>Critic vs Audience Score</h2>
+          <section id="scatterplot" aria-labelledby="audience-vs-critic-score-scatter-chart">
+              <h3>Critic vs Audience Score</h3>
               <canvas id="critic-audience-score-chart"></canvas>
           </section>
-          <div style="width: 800px;"><canvas id="acquisitions"></canvas></div>
-
         </div>
       </section>
     </main>

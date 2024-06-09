@@ -201,14 +201,10 @@ export const renderScatterPlot = (data) => {
   );
 };
 
-
-
-
-
 (async function() {
   const data = getMovieReviews();
-
+  // Call function to render charts
   renderBarChart(data);
   renderDoughnutChart(data);
-  renderScatterPlot(data); // Call the function to render the scatter plot
+  renderScatterPlot(data); 
 })();

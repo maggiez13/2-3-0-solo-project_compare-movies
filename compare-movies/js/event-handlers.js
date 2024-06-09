@@ -24,6 +24,7 @@ export const handleMovieSubmit = (event) => {
   renderScatterPlot(reviews);
 }
 
+
 export const resetMovies = () => {
   document.getElementById("reset").addEventListener("click", function() {
     localStorage.removeItem("reviews");
