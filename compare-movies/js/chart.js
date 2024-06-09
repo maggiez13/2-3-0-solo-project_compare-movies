@@ -1,8 +1,7 @@
 import Chart from 'chart.js/auto';
 import { getMovieReviews } from './local-storage-handlers';
 
-// Function to render the bar chart
-const renderBarChart = (data) => {
+export const renderBarChart = (data) => {
   data.sort((a, b) => b.domestic - a.domestic);
 
   const movieTitles = data.map(movie => movie.title);
@@ -52,7 +51,7 @@ const renderBarChart = (data) => {
   );
 };
 
-const renderDoughnutChart = (data) => {
+export const renderDoughnutChart = (data) => {
   const genreGross = {};
   data.forEach(movie => {
     if (genreGross[movie.genre]) {
@@ -113,9 +112,80 @@ const renderDoughnutChart = (data) => {
   );
 };
 
+export const renderScatterPlot = (data) => {
+  const criticScores = data.map(movie => parseInt(movie.criticScore));
+  const audienceScores = data.map(movie => parseInt(movie.audienceScore));
+  const domesticGross = data.map(movie => parseInt(movie.domestic));
+
+  new Chart(
+    document.getElementById('critic-audience-score-chart'),
+    {
+      type: 'scatter',
+      data: {
+        datasets: [
+          {
+            label: 'Audience Score',
+            data: audienceScores.map((score, index) => ({ x: score, y: domesticGross[index] })),
+            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+          },
+          {
+            label: 'Critic Score',
+            data: criticScores.map((score, index) => ({ x: score, y: domesticGross[index] })),
+            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1
+          }
+        ]
+      },
+      options: {
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Rotten Tomato Score'
+            }
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Box Office'
+            },
+            ticks: {
+              callback: function(value, index, values) {
+                return '$' + (value / 1000000).toFixed(0) + 'M';
+              }
+            }
+          }
+        },
+        tooltips: {
+          callbacks: {
+            label: function(context) {
+              const label = context.dataset.label || '';
+              let scoreType = '';
+              if (label.includes('Audience')) {
+                scoreType = 'Audience Score';
+              } else if (label.includes('Critic')) {
+                scoreType = 'Critic Score';
+              }
+              return `${scoreType}: ${context.parsed.x}, Box Office: $${(context.parsed.y / 1000000).toFixed(0)}M`;
+            }
+          }
+        }
+      }
+    }
+  );
+};
+
+
+
+
+
 (async function() {
   const data = getMovieReviews();
 
   renderBarChart(data);
   renderDoughnutChart(data);
+  renderScatterPlot(data); // Call the function to render the scatter plot
 })();
