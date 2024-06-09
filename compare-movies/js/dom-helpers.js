@@ -26,6 +26,8 @@ const makeReviewCardStructure = (parentElement, movieData) => {
   parentElement.append(li); 
 }
 
+
+
 // making actual review
 export const makingReviewCards = () => {
   const reviews = getMovieReviews();

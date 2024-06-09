@@ -6,13 +6,13 @@ export const handleMovieSubmit = (event) => {
 
   const form = event.target;
   const title = form.movieTitle.value; 
-  const critic = form.criticScore.value;
-  const audience = form.audienceScore.value;
+  const criticScore = form.criticScore.value;
+  const audienceScore = form.audienceScore.value;
   const domestic = form.domesticGrossSales.value;
   const genre = form.genre.value; 
 
   const reviews = getMovieReviews();
-  reviews.push({ title, critic, audience, domestic, genre}); 
+  reviews.unshift({ title, criticScore, audienceScore, domestic, genre}); 
 
   setLocalStorageKey("reviews", reviews);
   makingReviewCards();
