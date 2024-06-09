@@ -9,24 +9,16 @@ body {
   color: white;
 }
 
-#form-plus-reviews-container {
-  display: flex;
-  width: 100%;
-} 
-
-#reviews-container {
-  flex: 70%;
+.titles-css {
+  margin: 1rem;
 }
 
-form {
+#movie-form-header {
   border: 1px solid black; 
-  display: inline-block;
-  max-width: 60%;
-  width: 100%;
-  height: max-content;
-  margin: 0 1rem;
+  margin: 0 2rem 0 5rem; 
   padding: 1rem;
   background-color: #333333;
+  width: 160%;
 }
 
 input[type="text"],
@@ -53,15 +45,29 @@ button {
   padding-bottom: 1rem;
 }
 
+#form-plus-reviews-container {
+  display: flex;
+  justify-content: center; /* Horizontally center the items */
+  align-items: center; /* Vertically center the items */
+  gap: 1rem; /* Spacing between the form and reviews container */
+}
+
+#reviews-and-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #reviews-container {
-  border: 1px solid black; 
+  border: 1px solid white; 
+  width: 90%;
 }
 
 #reviews-list {
   list-style-type: none;
   display: flex;
   flex-wrap: wrap; 
-  max-height: 300px;
+  max-height: 455px;
   overflow-y: auto;
   padding: 1rem;
   background-color: #333333;
@@ -75,9 +81,12 @@ button {
   border-radius: 10px;
 }
 
+#reset {
+  margin: 1rem;
+}
+
 #bar-chart, #scatterplot {
-  background-color: 
-  #333333;
+  background-color: #333333;
   padding: 1rem 1rem 1rem 0.5rem;
 }
 
