@@ -1,6 +1,8 @@
 import { makingReviewCards } from "./dom-helpers";
 import { getMovieReviews, setLocalStorageKey } from "./local-storage-handlers";
 import { renderBarChart, renderDoughnutChart, renderScatterPlot } from "./chart";
+import reviewsFromJSON from "../../movie-data.json"
+
 
 export const handleMovieSubmit = (event) => {
   event.preventDefault();
@@ -26,7 +28,7 @@ export const handleMovieSubmit = (event) => {
 export const resetMovies = () => {
   document.getElementById("reset").addEventListener("click", function() {
     localStorage.removeItem("reviews");
-  
+    setLocalStorageKey("reviews", reviewsFromJSON);
     // Reload the page to reset to default movies
     location.reload();
   });

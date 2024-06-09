@@ -68,21 +68,26 @@ export const renderDoughnutChart = (data) => {
       existingChart.destroy();
     }
   }
+
+  // Calculate total gross earnings for each genre
   const genreGross = {};
   data.forEach(movie => {
     if (genreGross[movie.genre]) {
-      genreGross[movie.genre] += movie.domestic;
+      genreGross[movie.genre] += parseInt(movie.domestic);
     } else {
-      genreGross[movie.genre] = movie.domestic;
+      genreGross[movie.genre] = parseInt(movie.domestic);
     }
   });
 
-  let genreLabels = Object.keys(genreGross);
-  genreLabels.sort(); // Sort the genre labels alphabetically
+  // Create an array of objects containing genre and gross earnings
+  const genreEarningsArray = Object.entries(genreGross).map(([genre, gross]) => ({ genre, gross }));
 
-  genreLabels.sort((a, b) => genreGross[b] - genreGross[a]);
-  
-  const genreEarnings = genreLabels.map(label => genreGross[label]);
+  // Sort the array by gross earnings from greatest to least
+  genreEarningsArray.sort((a, b) => b.gross - a.gross);
+
+  // Extract genre labels and earnings after sorting
+  const genreLabels = genreEarningsArray.map(item => item.genre);
+  const genreEarnings = genreEarningsArray.map(item => item.gross);
 
   new Chart(
     document.getElementById('genre-doughnut-chart'),
@@ -94,18 +99,18 @@ export const renderDoughnutChart = (data) => {
           label: 'Genre Gross Earnings',
           data: genreEarnings,
           backgroundColor: [
-            'rgba(255, 99, 132, 0.5)',
-            'rgba(54, 162, 235, 0.5)',
-            'rgba(255, 205, 86, 0.5)',
-            'rgba(75, 192, 192, 0.5)',
-            'rgba(153, 102, 255, 0.5)',
-            'rgba(255, 159, 64, 0.5)',
-            'rgba(255, 99, 132, 0.5)',
-            'rgba(54, 162, 235, 0.5)',
-            'rgba(255, 205, 86, 0.5)',
-            'rgba(75, 192, 192, 0.5)',
-            'rgba(153, 102, 255, 0.5)',
-            'rgba(255, 159, 64, 0.5)',
+            'rgba(255, 99, 132, 0.8)',
+            'rgba(54, 162, 235, 0.8)',
+            'rgba(255, 205, 86, 0.8)',
+            'rgba(75, 192, 192, 0.8)',
+            'rgba(153, 102, 255, 0.8)',
+            'rgba(255, 159, 64, 0.8)',
+            'rgba(255, 99, 132, 0.8)',
+            'rgba(54, 162, 235, 0.8)',
+            'rgba(255, 205, 86, 0.8)',
+            'rgba(75, 192, 192, 0.8)',
+            'rgba(153, 102, 255, 0.8)',
+            'rgba(255, 159, 64, 0.8)',
           ],
           borderColor: [
             'rgba(255, 99, 132, 1)',
@@ -127,6 +132,11 @@ export const renderDoughnutChart = (data) => {
     }
   );
 };
+
+
+
+
+
 
 export const renderScatterPlot = (data) => {
   const canvas = document.getElementById('critic-audience-score-chart');
