@@ -23,8 +23,6 @@ export const handleMovieSubmit = (event) => {
   renderDoughnutChart(reviews);
   renderScatterPlot(reviews);
 }
-
-
 export const resetMovies = () => {
   document.getElementById("reset").addEventListener("click", function() {
     localStorage.removeItem("reviews");
